@@ -1,7 +1,11 @@
-name: Test Workflow
+## build test and push on dockerhub
+
+name: DockerHub
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - "main"
 
 jobs:
   build-test:
@@ -32,8 +36,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: docker/build-push-action@v2
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "joke-app-iw3" #Must be unique in Heroku
-          heroku_email: "mohammadamine.banaei@protonmail.com"
+          username: fantinraimbault
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          tags: latest
+          push: true
