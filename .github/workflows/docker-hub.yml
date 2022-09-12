@@ -40,5 +40,6 @@ jobs:
         with:
           username: fantinraimbault
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: fantinraimbault/esgi-joke
           tags: latest
           push: true
